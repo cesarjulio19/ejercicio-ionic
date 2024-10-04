@@ -41,7 +41,7 @@ export class DataInMemoryService<T extends Model> extends DataService<T>{
     throw new Error('Method not implemented.');
   }
   public override requestAll(): Observable<T[]> {
-    throw new Error('Method not implemented.');
+    return this.records$
   }
   public override requestById(id: string): Observable<T | null> {
     throw new Error('Method not implemented.');
