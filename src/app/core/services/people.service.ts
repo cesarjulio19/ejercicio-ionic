@@ -10,7 +10,7 @@ export class PeopleService {
 
   constructor( private dataServ: DataService<Person>) {
     console.log("PeopleService created");
-    this.dataServ.create({name:"Juan", surname:"García",age:47}).subscribe({
+    this.dataServ.create({name:"César", surname:"Martin",age:25}).subscribe({
       next:(value)=>{
         console.log("Persona añadida corréctamente");
         console.log(value);
@@ -19,7 +19,7 @@ export class PeopleService {
       complete:()=>{}
     });
 
-    this.dataServ.create({name:"Juan", surname:"García",age:47}).subscribe({
+    this.dataServ.create({name:"César", surname:"Martin",age:25}).subscribe({
       next:(value)=>{
         console.log("Persona añadida corréctamente");
         console.log(value);
@@ -28,7 +28,7 @@ export class PeopleService {
       complete:()=>{}
     });
 
-    this.dataServ.create({name:"Juan", surname:"García",age:47}).subscribe({
+    this.dataServ.create({name:"César", surname:"Martin",age:25}).subscribe({
       next:(value)=>{
         console.log("Persona añadida corréctamente");
         console.log(value);
@@ -37,7 +37,7 @@ export class PeopleService {
       complete:()=>{}
     });
 
-    this.dataServ.create({name:"Juan", surname:"García",age:47}).subscribe({
+    this.dataServ.create({name:"César", surname:"Martin",age:25}).subscribe({
       next:(value)=>{
         console.log("Persona añadida corréctamente");
         console.log(value);

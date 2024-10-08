@@ -23,6 +23,8 @@ export class DataInMemoryService<T extends Model> extends DataService<T>{
   constructor() { 
     super();
   }
+
+  // 
   public override create(value: T): Observable<T> {
 
     return new Observable((observer)=>{
@@ -34,16 +36,52 @@ export class DataInMemoryService<T extends Model> extends DataService<T>{
   });
 
   }
+
+
   public override delete(id: string): Observable<T | null> {
-    throw new Error('Method not implemented.');
+
+    return new Observable((observer) => {
+      const records = this._records.value;
+      const index = records.findIndex(item => item.id === id);
+      if (index !== -1) {
+          const deletedRecord = records[index];
+          this._records.next(records.filter(item => item.id !== id));
+          observer.next(deletedRecord);
+      } else {
+          observer.next(null);
+      }
+      observer.complete();
+  });
+    
   }
+
+
   public override update(id: string, value: T): Observable<T | null> {
-    throw new Error('Method not implemented.');
+    return new Observable((observer) => {
+      const records = this._records.value;
+      const index = records.findIndex(item => item.id === id);
+      if (index !== -1) {
+          records[index] = { ...records[index], ...value };
+          this._records.next([...records]);
+          observer.next(records[index]);
+      } else {
+          observer.next(null);
+      }
+      observer.complete();
+  });
   }
+
+
   public override requestAll(): Observable<T[]> {
     return this.records$
   }
+
+
   public override requestById(id: string): Observable<T | null> {
-    throw new Error('Method not implemented.');
+    return new Observable((observer) => {
+      const record = this._records.value.find(item => item.id === id) || null;
+      observer.next(record);
+      observer.complete();
+  });
   }
 }
